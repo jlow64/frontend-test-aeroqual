@@ -28,6 +28,14 @@ html, body, #root {
   font-family: 'Cinzel', serif;
   overflow: hidden;
 
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+  }
+
   .Header {
     display: flex;
     font-size: 3rem;
@@ -40,6 +48,7 @@ html, body, #root {
     flex-direction: column;    
     justify-content: center;
     padding: 0 10vw;
+    margin: 1rem 0;
     width: 100%;
   }
 

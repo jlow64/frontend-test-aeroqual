@@ -20,8 +20,7 @@ const Member = ({ details, showModal }) => {
   );
 };
 
-export default function Members() {
-  const [memberList, setMemberList] = useState([]);
+export default function Members({ memberList, setMemberList }) {
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [currentDetails, setCurrentDetails] = useState(null);
@@ -36,7 +35,14 @@ export default function Members() {
     setShowModal(true);
   };
   const handleDelete = () => {
-    setShowAlert(true);
+    axios
+      .delete(`${API_URL}/People?id=${currentDetails?.id}`)
+      .then((res) => {
+        setShowAlert(true);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     setShowModal(false);
   };
 
@@ -49,13 +55,14 @@ export default function Members() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [showModal]);
 
   return (
     <>
       <div className="Members">
         {showAlert ? (
           <Alert
+            className="mb-4"
             variant="success"
             onClose={() => setShowAlert(false)}
             dismissible
